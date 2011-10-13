@@ -14,10 +14,10 @@ Text::Bowdlerise - Bowdlerise text. Simples.
 =head1 SYNOPSIS
 
 Bowdlerises a (or a list of) text string(s).  Primarily replaces common 
-profanity with socially acceptable alternative.  This can of course be extended
+profanity with socially acceptable alternatives.  This can of course be extended
 or even overriden by way of configuration.
 
-In it's simplest form, a straight forward use to replace the built in common 
+In its simplest form, a straightforward use to replace the built in common 
 elements, looks like this:
 
     use Text::Bowdlerise;
@@ -47,7 +47,7 @@ my $default_list = {
     fucktard     => 'a complete Dave',
     defuck       => 'make better',
     fuck         => 'ruin',
-    piss         => 'unrine',
+    piss         => 'urine',
     shit         => 'faeces',
     tit          => 'breast',
     twat         => 'ladypart',
@@ -57,7 +57,7 @@ my $default_list = {
 
 =head1 CONSTRUCTOR
 
-Constructs a new Text::Bowdler object which can be configured how you see fit.
+Constructs a new Text::Bowdlerise object which can be configured how you see fit.
 
 =head2 DWIMery
 
@@ -69,29 +69,29 @@ a hashref of configuration parameters (one or many of):
 
 =over 
 
-=item ignore_default_list
+=item C<ignore_default_list>
 
 Tells the Bowdler not to use its built in list.  If this is specified, 
 alternate rules should be given.
 
-=item allow_part_replacement
+=item C<allow_part_replacement>
 
 Tells the Bowdler whether to replace matches that are part of other words.
-Defaults to 1 (allow). Setting a value of 0 will disable this behaviour,
+Defaults to C<1> (allow). Setting a value of C<0> will disable this behaviour,
 
-=item user_rule_list
+=item <user_rule_list>
 
 Used to specify a specific set of replacements.  Supplied as a hashref 
-of 'thing to match' => 'replacement text'.
+of C<'thing to match' => 'replacement text'>.
 
 Note that this does not override the default list; This appends to it.  To
-remove the built in ruleset specify ignore_default_list => 1 
+remove the built in ruleset specify C<ignore_default_list => 1>
 
-=item user_rule_file
+=item C<user_rule_file>
 
 Use to tell the module to read a rule list file. Supplied as a string file
 name; The file must contain a perl hashref in the same format as
-rule_list
+C<rule_list>.
 
 =back
 
@@ -148,7 +148,7 @@ sub bowdlerise {
             # Do the replacement first with whole words,
             $chunk =~ s{\b\Q$search\E\b}{$replacement}gi;
 
-            # Then with part-word is that is permissable.
+            # Then with part-word if that is permissable.
             $chunk =~ s{\Q$search\E}{$replacement}gi
                 if $self->{_prefs}{allow_part_replacement};
         }
